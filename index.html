@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliance Consumption Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <h1>JEHM Appliance Consumption Calculator</h1>
+
+        <form id="calculatorForm">
+            <div class="form-group">
+                <label for="appliance">Appliance Name:</label>
+                <select id="appliance" name="appliance">
+                    <option value="Choose">---Choose---</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Refrigerator">Refrigerator</option>
+                    <option value="Air Conditioner">Air Conditioner</option>
+                    <option value="Washing Machine">Washing Machine</option>
+                    <option value="LED TV">LED TV</option>
+                    <option value="Computer">Computer</option>
+                    <option value="Steam Iron">Steam Iron</option>
+                    <option value="Dry Iron">Dry Iron</option>
+                    <option value="Sound System">Sound System</option>
+                    <option value="Desktop Computer">Desktop Computer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="isRated">Is it Rated?</label>
+                <select id="isRated" name="isRated">
+                    <option value="Choose">---Choose---</option>
+                    <option value="not-rated">Not Rated</option>
+                    <option value="rated">Rated</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="starRating">Star Rating (Rated Appliances Only):</label>
+                <select id="starRating" name="starRating">
+                    <option value="Choose">---Choose---</option>
+                    <option value="5-star">5-Star</option>
+                    <option value="4-star">4-Star</option>
+                    <option value="3-star">3-Star</option>
+                    <option value="2-star">2-Star</option>
+                    <option value="1-star">1-Star</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hoursUsed">Hours Used Per Day:</label>
+                <input type="number" id="hoursUsed" name="hoursUsed" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="daysUsed">Days Used Per Month:</label>
+                <input type="number" id="daysUsed" name="daysUsed" min="1" max="31" required>
+            </div>
+
+            <button type="button" id="calculate">Calculate</button>
+        </form>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
