@@ -1,144 +1,127 @@
-/* Base Styling */
-body {
-    font-family: 'Poppins', sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-   
-    background-size: cover; /* Make the image cover the whole page */
-    color: #fff; /* Text color for readability over the image */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .container {
-    max-width: 700px;
-    margin: 50px auto;
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background for container */
+    background: #ffffff;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    color: #333;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    width: 100%;
 }
 
 h1 {
     text-align: center;
+    color: #2575fc;
     font-weight: 700;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 28px;
     margin-bottom: 20px;
-    color: #333; /* Override body color for better visibility */
 }
 
-/* Form Styling */
 .form-group {
     margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 1rem;
     font-weight: 600;
-    color: #333; /* Override for visibility */
-}
-
-input, select, button {
-    width: 100%;
-    padding: 12px;
     margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
+    color: #333;
 }
 
-input:focus, select:focus {
-    border-color: #6a11cb;
-    box-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+select, input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     outline: none;
+    transition: all 0.3s;
+}
+
+select:focus, input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 6px rgba(37, 117, 252, 0.5);
 }
 
 button {
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #2575fc;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s;
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(106, 17, 203, 0.3);
+    background: #1d4f8e;
 }
 
-/* Results Section */
-#results {
-    margin-top: 30px;
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background for results */
-    padding: 20px;
-    border-radius: 10px;
-    color: #333;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-#results p {
-    margin: 10px 0;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-#results h3 {
-    text-align: center;
-    color: #6a11cb;
+#addAppliance {
+    background: #6a11cb;
     margin-bottom: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
+#addAppliance:hover {
+    background: #4c118c;
+}
 
+.remove-appliance {
+    background: #fc5c65;
+}
+
+.remove-appliance:hover {
+    background: #b53737;
+}
+
+#results {
+    margin-top: 20px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+#results p, #results h3 {
+    color: #444;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
     .container {
-        margin: 20px auto;
         padding: 20px;
     }
 
     h1 {
-        font-size: 2rem;
-    }
-
-    input, select, button {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-
-    #results p {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
+        font-size: 22px;
     }
 
     button {
-        font-size: 0.9rem;
-        padding: 10px;
+        font-size: 14px;
+        padding: 8px 12px;
     }
 
-    .container {
-        padding: 15px;
-    }
-
-    label {
-        font-size: 0.9rem;
+    select, input {
+        font-size: 14px;
+        padding: 8px 12px;
     }
 }
-

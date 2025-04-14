@@ -1,9 +1,8 @@
-document.getElementById('calculate').addEventListener('click', function () {
-    const appliance = document.getElementById('appliance').value;
-    const isRated = document.getElementById('isRated').value;
-    const starRating = isRated === 'rated' ? document.getElementById('starRating').value : null;
-    const hoursUsed = parseInt(document.getElementById('hoursUsed').value, 10);
-    const daysUsed = parseInt(document.getElementById('daysUsed').value, 10);
+document.addEventListener('DOMContentLoaded', () => {
+    const appliancesContainer = document.getElementById('appliancesContainer');
+    const addApplianceButton = document.getElementById('addAppliance');
+    const calculateButton = document.getElementById('calculate');
+    const resultsDiv = document.getElementById('results');
 
     const ratedData = {
         "Refrigerator": { "5-star": 80, "4-star": 100, "3-star": 120, "2-star": 140, "1-star": 175 },
@@ -25,27 +24,79 @@ document.getElementById('calculate').addEventListener('click', function () {
         "LED TV": 74
     };
 
-    const ratePerKWH = 1.69; // Rate in GHc
-    let consumptionPerDayInKWH = 0; // Daily consumption in kWh
+    const ratePerKWH = 1.69; // Rate in Ghanaian cedis
 
-    // Calculate daily consumption
-    if (isRated === 'rated') {
-        consumptionPerDayInKWH = (ratedData[appliance][starRating] * hoursUsed) / 1000;
-    } else {
-        consumptionPerDayInKWH = (notRatedData[appliance] * hoursUsed) / 1000;
-    }
+    // Add new appliance entry
+    addApplianceButton.addEventListener('click', () => {
+        const newEntry = appliancesContainer.firstElementChild.cloneNode(true);
+        newEntry.querySelector('.remove-appliance').addEventListener('click', (e) => {
+            e.target.parentElement.remove();
+        });
+        appliancesContainer.appendChild(newEntry);
+    });
 
-    // Calculate costs
-    const dailyCost = consumptionPerDayInKWH * ratePerKWH;
-    const weeklyCost = dailyCost * 7;
-    const monthlyCost = dailyCost * daysUsed;
+    // Calculate total consumption and cost
+    calculateButton.addEventListener('click', () => {
+        let totalConsumptionPerDayInKWH = 0;
+        let totalDailyCost = 0;
+        let totalWeeklyCost = 0;
+        let totalMonthlyCost = 0;
 
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = `
-        <p><strong>Appliance:</strong> ${appliance}</p>
-        <p><strong>Daily Consumption:</strong> ${consumptionPerDayInKWH.toFixed(2)} kWh</p>
-        <p><strong>Daily Cost:</strong> GHc ${dailyCost.toFixed(2)}</p>
-        <p><strong>Weekly Cost:</strong> GHc ${weeklyCost.toFixed(2)}</p>
-        <p><strong>Monthly Cost:</strong> GHc ${monthlyCost.toFixed(2)}</p>
-    `;
+        resultsDiv.innerHTML = ""; // Clear previous results
+
+        appliancesContainer.querySelectorAll('.appliance-entry').forEach(entry => {
+            const appliance = entry.querySelector('.appliance-select').value;
+            const isRated = entry.querySelector('.is-rated-select').value;
+            const starRating = isRated === 'rated' ? entry.querySelector('.star-rating-select').value : null;
+            const hoursUsed = parseInt(entry.querySelector('.hours-used-input').value, 10);
+            const daysUsed = parseInt(entry.querySelector('.days-used-input').value, 10);
+
+            if (!appliance || appliance === "Choose" || isNaN(hoursUsed) || isNaN(daysUsed)) {
+                // Skipping incomplete or invalid entries
+                resultsDiv.innerHTML += `<p style="color: red;">Please fill all fields correctly for each appliance.</p>`;
+                return;
+            }
+
+            let consumptionPerDayInKWH = 0;
+
+            if (isRated === 'rated' && ratedData[appliance] && starRating) {
+                consumptionPerDayInKWH = (ratedData[appliance][starRating] * hoursUsed) / 1000; // Convert watts to kWh
+            } else if (isRated === 'not-rated' && notRatedData[appliance]) {
+                consumptionPerDayInKWH = (notRatedData[appliance] * hoursUsed) / 1000; // Convert watts to kWh
+            } else {
+                resultsDiv.innerHTML += `<p style="color: red;">Invalid data for ${appliance}. Please check your input.</p>`;
+                return;
+            }
+
+            // Calculate costs
+            const dailyCost = consumptionPerDayInKWH * ratePerKWH;
+            const weeklyCost = dailyCost * 7;
+            const monthlyCost = dailyCost * daysUsed;
+
+            totalConsumptionPerDayInKWH += consumptionPerDayInKWH;
+            totalDailyCost += dailyCost;
+            totalWeeklyCost += weeklyCost;
+            totalMonthlyCost += monthlyCost;
+
+            resultsDiv.innerHTML += `
+                <p><strong>Appliance:</strong> ${appliance}</p>
+                <p><strong>Daily Consumption:</strong> ${consumptionPerDayInKWH.toFixed(2)} kWh</p>
+                <p><strong>Daily Cost:</strong> GHc ${dailyCost.toFixed(2)}</p>
+                <p><strong>Weekly Cost:</strong> GHc ${weeklyCost.toFixed(2)}</p>
+                <p><strong>Monthly Cost:</strong> GHc ${monthlyCost.toFixed(2)}</p>
+                <hr>
+            `;
+        });
+
+        // Total summary
+        if (totalConsumptionPerDayInKWH > 0) {
+            resultsDiv.innerHTML += `
+                <h3>Total Consumption and Costs:</h3>
+                <p><strong>Total Daily Consumption:</strong> ${totalConsumptionPerDayInKWH.toFixed(2)} kWh</p>
+                <p><strong>Total Daily Cost:</strong> GHc ${totalDailyCost.toFixed(2)}</p>
+                <p><strong>Total Weekly Cost:</strong> GHc ${totalWeeklyCost.toFixed(2)}</p>
+                <p><strong>Total Monthly Cost:</strong> GHc ${totalMonthlyCost.toFixed(2)}</p>
+            `;
+        }
+    });
 });
