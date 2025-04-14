@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Marquee with instructions -->
+    <marquee behavior="scroll" direction="left" style="background: #2575fc; color: white; padding: 10px; font-size: 16px; border-radius: 8px;">
+        Welcome to JEHM Appliance Consumption Calculator! Select your appliances, specify their details, and calculate your energy costs effortlessly. 🌟 Appliances with (N.R) beside them are not rated.
+    </marquee>
+
     <div class="container">
         <h1>JEHM Appliance Consumption Calculator</h1>
         <form id="calculatorForm">
@@ -15,16 +20,16 @@
                     <label for="appliance">Appliance Name:</label>
                     <select class="appliance-select" name="appliance">
                         <option value="Choose">---Choose---</option>
-                        <option value="Laptop">Laptop</option>
+                        <option value="Laptop">Laptop (N.R)</option>
                         <option value="Refrigerator">Refrigerator</option>
                         <option value="Air Conditioner">Air Conditioner</option>
                         <option value="Washing Machine">Washing Machine</option>
                         <option value="LED TV">LED TV</option>
                         <option value="Computer">Computer</option>
-                        <option value="Steam Iron">Steam Iron</option>
-                        <option value="Dry Iron">Dry Iron</option>
-                        <option value="Sound System">Sound System</option>
-                        <option value="Desktop Computer">Desktop Computer</option>
+                        <option value="Steam Iron">Steam Iron (N.R)</option>
+                        <option value="Dry Iron">Dry Iron (N.R)</option>
+                        <option value="Sound System">Sound System (N.R)</option>
+                        <option value="Desktop Computer">Desktop Computer (N.R)</option>
                     </select>
 
                     <label for="isRated">Is it Rated?</label>

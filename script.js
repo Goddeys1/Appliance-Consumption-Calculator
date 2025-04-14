@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Air Conditioner": { "5-star": 900, "4-star": 1100, "3-star": 1300, "2-star": 1500, "1-star": 1700 },
         "Washing Machine": { "5-star": 100, "4-star": 125, "3-star": 160, "2-star": 200, "1-star": 250 },
         "LED TV": { "5-star": 40, "4-star": 50, "3-star": 70, "2-star": 100, "1-star": 110 },
-        "Computer": { "5-star": 30, "4-star": 35, "3-star": 40, "2-star": 45, "1-star": 50 }
+       
     };
 
     const notRatedData = {
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Air Conditioner": 1300,
         "Washing Machine": 167,
         "LED TV": 74
+        
     };
 
     const ratePerKWH = 1.69; // Rate in Ghanaian cedis
