@@ -9,7 +9,22 @@
 <body>
     <div class="container">
         <h1>JEHM Appliance Consumption Calculator</h1>
-        <marquee behavior="scroll" direction="left" style="background: #2575fc; color: #ffffff; padding: 15px; font-size: 18px; font-weight: bold; border-radius: 8px; margin-top: 15px;">
+
+        <div class="toolbar">
+            <label class="toolbar-item" for="currencySelector">
+                Currency
+                <select id="currencySelector">
+                    <option value="GHS">GHS</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </label>
+
+            <button type="button" id="themeToggle" class="theme-toggle">Dark Mode</button>
+        </div>
+
+        <marquee behavior="scroll" direction="left" scrollamount="3" scrolldelay="25" style="background: linear-gradient(90deg, #0b63f6, #5b9cff); color: #ffffff; padding: 14px 18px; font-size: 17px; font-weight: 700; border-radius: 12px; margin-top: 15px; box-shadow: 0 10px 20px rgba(11, 99, 246, 0.25);">
             Welcome to JEHM Appliance Consumption Calculator! Select your appliances, specify their details, and calculate your energy costs effortlessly. 🌟 Appliances with (N.R) beside them are not rated.
         </marquee>
         <form id="calculatorForm">
@@ -57,10 +72,21 @@
                 </div>
             </div>
             <button type="button" id="addAppliance">Add Appliance</button>
-            <button type="button" id="calculate">Calculate</button>
+            <div class="button-row">
+                <button type="button" id="calculate">Calculate</button>
+                <button type="button" id="resetCalculator" class="secondary-button">Reset</button>
+            </div>
         </form>
         <div id="results"></div>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <img class="profile-photo" src="images/my-photo.jpg.jpeg" alt="Engineer Godwin" />
+            <p class="credit-line">Engineer Godwin</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
